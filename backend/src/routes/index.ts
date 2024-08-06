@@ -1,6 +1,7 @@
 import { Router } from "express";
 import pong from "../controller/pong";
 import chatcontroller from "../controller/chat";
+import tempembeddingtest from "../controller/tempembeddingtest";
 
 let routes = Router();
 
@@ -8,6 +9,7 @@ let routes = Router();
 routes.get("/ping", pong);
 
 routes.post("/chat", chatcontroller);
+routes.post("/test-embedding", tempembeddingtest);
 
 
 export default routes;
