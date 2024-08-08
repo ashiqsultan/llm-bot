@@ -10,7 +10,7 @@ const createRecord = async (
 ) => {
   try {
     const { data } = req.body;
-    if (!data) {
+    if (!data || typeof data !== "string") {
       const response: IAppRes = {
         data: "",
         isError: true,
@@ -19,8 +19,7 @@ const createRecord = async (
       res.status(400).send(response);
       return;
     }
-    const newRecord: IRecord = { data };
-    const document = await createRecordService(newRecord);
+    const document = await createRecordService(data);
     const result: IAppRes = {
       data: document,
       isError: false,

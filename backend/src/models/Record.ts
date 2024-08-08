@@ -1,8 +1,9 @@
 import { ObjectId, Collection, Document } from "mongodb";
 import dbClient from "../dbClient";
 
-export interface IRecord{
+export interface IRecord {
   data: string;
+  embedding: Array<number>;
 }
 
 export interface IRecordDocument extends IRecord, Document {
@@ -12,8 +13,8 @@ export interface IRecordDocument extends IRecord, Document {
 const RecordCollection = async (): Promise<Collection<IRecordDocument>> => {
   const mongoClient = await dbClient();
   const collection: Collection<IRecordDocument> = mongoClient
-    .db('llmbotdb')
-    .collection('records');
+    .db("llmbotdb")
+    .collection("records");
   return collection;
 };
 
