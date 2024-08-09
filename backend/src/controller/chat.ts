@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import IAppRes from "../types/IAppRes";
-import llm from "../utils/openai/llm";
+import chatService from "../services/chat";
 
 const chatcontroller = async (
   req: Request,
@@ -12,14 +12,9 @@ const chatcontroller = async (
     if (!userMsg) {
       throw "user message cannot be empty";
     }
-    const llmRes = await llm(userMsg);
-    if (llmRes.reply) {
-      const response: IAppRes = { data: llmRes, isError: false };
-      res.send(response);
-    }
-    const llmerrRes: IAppRes = { data: "", isError: true, errMsg: "LLM error" };
-    res.send(llmerrRes);
-    // const response: IAppRes = { data: "chat message", isError: false };
+    const llmRes = await chatService(userMsg);
+    const response: IAppRes = { data: llmRes, isError: false };
+    res.send(response);
   } catch (error) {
     next(error);
   }

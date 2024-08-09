@@ -5,12 +5,16 @@ const openai = new OpenAI({
   apiKey: openaiApiKey,
 });
 
-async function main(userMessage: string): Promise<any> {
+async function main(userMessage: string, context: string[]): Promise<any> {
   const completion = await openai.chat.completions.create({
     messages: [
       {
         role: "system",
-        content: `You are an helpful assistant to respond to user messages. The output must be in JSON.
+        content: `You are an helpful assistant to respond to user messages using the context array.
+        Answer to the user question only using the provided context as knowledge.
+        If the question is outside the given context then apologize to the user that you dont have any information regarding the question.
+        Context: ${JSON.stringify(context)}
+        The output must be in JSON.
         Output JSON Format: {reply:""}`,
       },
       { role: "user", content: userMessage },
