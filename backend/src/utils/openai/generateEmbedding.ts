@@ -11,7 +11,7 @@ async function generateEmbedding(inputText: string): Promise<number[]> {
       model: "text-embedding-ada-002",
     });
     const embedding = vectorEmbedding.data[0].embedding;
-    console.log("embedding");
+    // console.log("embedding");
     console.log(embedding);
     return embedding;
   } catch (error) {
