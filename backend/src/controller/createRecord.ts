@@ -25,8 +25,9 @@ const createRecord = async (
       title,
       content: data,
     };
-    await createArticleService(newArticle);
-    await createRecordService(data);
+    const article = await createArticleService(newArticle);
+    // get id from new created article
+    await createRecordService(article);
     const result: IAppRes = {
       data: 'Article Created',
       isError: false,

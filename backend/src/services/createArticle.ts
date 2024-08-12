@@ -1,10 +1,19 @@
-import ArticleCollection, { IArticle } from '../models/Article';
+import ArticleCollection, {
+  IArticle,
+  IArticleDocument,
+} from '../models/Article';
 
-export default async function createArticle(article: IArticle): Promise<string> {
+export default async function createArticle(
+  article: IArticle
+): Promise<IArticleDocument> {
   try {
     const collection = await ArticleCollection();
-    const createOp = await collection.insertOne(article);
-    return 'Article creation done';
+    const insertArticle = await collection.insertOne(article);
+    const createdArticle = await collection.findOne({
+      _id: insertArticle.insertedId,
+    });
+    if (!createdArticle) throw 'Error creating article';
+    return createdArticle;
   } catch (error) {
     throw error;
   }

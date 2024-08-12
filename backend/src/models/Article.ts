@@ -1,5 +1,5 @@
-import { ObjectId, Collection, Document } from "mongodb";
-import dbClient from "../dbClient";
+import { ObjectId, Collection, Document } from 'mongodb';
+import dbClient from '../dbClient';
 
 export interface IArticle {
   title: string;
@@ -13,8 +13,8 @@ export interface IArticleDocument extends IArticle, Document {
 const ArticleCollection = async (): Promise<Collection<IArticleDocument>> => {
   const mongoClient = await dbClient();
   const collection: Collection<IArticleDocument> = mongoClient
-    .db("llmbotdb")
-    .collection("articles");
+    .db('llmbotdb')
+    .collection('articles');
   return collection;
 };
 
