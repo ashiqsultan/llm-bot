@@ -2,7 +2,7 @@ import { Router } from 'express';
 import pong from '../controller/pong';
 import chatcontroller from '../controller/chat';
 import tempembeddingtest from '../controller/tempembeddingtest';
-import createRecord from '../controller/createRecord';
+import createArticle from '../controller/createArticle';
 import semanticSearch from '../controller/semanticSearch';
 import getAllArticles from '../controller/getAllArticles';
 import getArticleById from '../controller/getArticleById';
@@ -14,9 +14,9 @@ routes.get('/ping', pong);
 
 routes.post('/chat', chatcontroller);
 routes.post('/test-embedding', tempembeddingtest);
-routes.post('/createRecord', createRecord);
 routes.post('/semanticSearch', semanticSearch);
 
+routes.post('/article', createArticle);
 routes.get('/article', getAllArticles);
 routes.get('/article/:id', getArticleById);
 

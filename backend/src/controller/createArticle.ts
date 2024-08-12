@@ -1,22 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
 import IAppRes from '../types/IAppRes';
-import createRecordService from '../services/createRecord';
 import createArticleService from '../services/createArticle';
-import { IRecord } from '../models/Record';
+import createChunks from '../services/createChunks';
 import { IArticle } from '../models/Article';
 
-const createRecord = async (
+const createArticle = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const { title, data } = req.body;
-    if (!data || typeof data !== 'string') {
+    if (!title || !data || typeof data !== 'string') {
       const response: IAppRes = {
         data: '',
         isError: true,
-        errMsg: 'Data cannot be empty',
+        errMsg: 'Title or data cannot be empty',
       };
       res.status(400).send(response);
       return;
@@ -26,10 +25,9 @@ const createRecord = async (
       content: data,
     };
     const article = await createArticleService(newArticle);
-    // get id from new created article
-    await createRecordService(article);
+    await createChunks(article);
     const result: IAppRes = {
-      data: 'Article Created',
+      data: article,
       isError: false,
     };
     res.json(result);
@@ -38,4 +36,4 @@ const createRecord = async (
   }
 };
 
-export default createRecord;
+export default createArticle;

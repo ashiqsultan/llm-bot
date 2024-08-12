@@ -1,9 +1,9 @@
 import textSplitter from '../utils/openai/textSplitter';
-import RecordCollection, { IRecordDocument } from '../models/Record';
+import ChunkCollection from '../models/Chunk';
 import generateEmbedding from '../utils/openai/generateEmbedding';
 import { IArticleDocument } from '../models/Article';
 
-export default async function createRecord(
+export default async function createChunk(
   article: IArticleDocument
 ): Promise<string> {
   try {
@@ -11,7 +11,7 @@ export default async function createRecord(
     const chunkedTextArr = await textSplitter(article.content);
     // Create promises
     const insertPromises = chunkedTextArr.map(async (chunk) => {
-      const collection = await RecordCollection();
+      const collection = await ChunkCollection();
       const embedding = await generateEmbedding(chunk);
       return collection.insertOne({
         data: chunk,
@@ -20,9 +20,8 @@ export default async function createRecord(
       });
     });
     // Insert Chunks
-    const insertResults = await Promise.all(insertPromises);
-    // @ts-ignore
-    return 'Record creation done';
+    await Promise.all(insertPromises);
+    return 'Chunk creation done';
   } catch (error) {
     throw error;
   }

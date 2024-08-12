@@ -1,21 +1,21 @@
-import RecordCollection, { IRecordDocument } from "../models/Record";
+import ChunkCollection, { IChunkDocument } from "../models/Chunk";
 import generateEmbedding from "../utils/openai/generateEmbedding";
 
 const semanticSearch = async (
   searchText: string
-): Promise<IRecordDocument[]> => {
+): Promise<IChunkDocument[]> => {
   try {
     const embedding = await generateEmbedding(searchText);
-    const collection = await RecordCollection();
+    const collection = await ChunkCollection();
     // Query DB
-    const aggCursor = collection.aggregate<IRecordDocument>([
+    const aggCursor = collection.aggregate<IChunkDocument>([
       {
         $vectorSearch: {
-          index: "vector_index_01",
+          index: "chunk_vector_index",
           path: "embedding",
           queryVector: embedding,
           numCandidates: 150,
-          limit: 2,
+          limit: 5,
         },
       },
       {
@@ -27,11 +27,11 @@ const semanticSearch = async (
         },
       },
     ]);
-    const records: IRecordDocument[] = [];
+    const chunks: IChunkDocument[] = [];
     for await (const doc of aggCursor) {
-      records.push(doc);
+      chunks.push(doc);
     }
-    return records;
+    return chunks;
   } catch (error) {
     throw error;
   }

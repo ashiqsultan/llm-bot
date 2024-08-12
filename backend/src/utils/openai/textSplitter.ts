@@ -3,7 +3,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 const textSplitter = async (text: string): Promise<string[]> => {
   try {
     const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 500,
+      chunkSize: 100,
       chunkOverlap: 20,
       // Additional separators if necessary
       // separators: ["|", "##", ">", "-"],
