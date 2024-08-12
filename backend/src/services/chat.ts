@@ -1,16 +1,20 @@
-import semanticSearch from "./semanticSearch";
-import llm from "../utils/openai/llm";
+import semanticSearch from './semanticSearch';
+import llm from '../utils/openai/llm';
+import getArticlesByIds from './getArticlesByIds';
 
-const chatService = async (userMsg: string): Promise<string> => {
+const chatService = async (
+  userMsg: string
+): Promise<{ reply: string; sources: any[] }> => {
   try {
     const context = await semanticSearch(userMsg);
     const contextForLLM = context.map((i) => i.data);
-    console.log({contextForLLM})
+    const articleIds = context.map((i) => i.articleId);
+    const articleTitles = await getArticlesByIds(articleIds);
     const llmRes = await llm(userMsg, contextForLLM);
     if (llmRes.reply) {
-      return llmRes.reply;
+      return { reply: llmRes.reply, sources: articleTitles };
     }
-    return "Something went wrong";
+    throw 'Something went wrong';
   } catch (error) {
     throw error;
   }

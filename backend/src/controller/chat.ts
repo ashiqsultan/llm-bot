@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import IAppRes from "../types/IAppRes";
-import chatService from "../services/chat";
+import { Request, Response, NextFunction } from 'express';
+import IAppRes from '../types/IAppRes';
+import chatService from '../services/chat';
 
 const chatcontroller = async (
   req: Request,
@@ -8,11 +8,12 @@ const chatcontroller = async (
   next: NextFunction
 ) => {
   try {
-    const userMsg: string = req?.body?.msg || "";
+    const userMsg: string = req?.body?.msg || '';
     if (!userMsg) {
-      throw "user message cannot be empty";
+      throw 'user message cannot be empty';
     }
     const llmRes = await chatService(userMsg);
+
     const response: IAppRes = { data: llmRes, isError: false };
     res.send(response);
   } catch (error) {
