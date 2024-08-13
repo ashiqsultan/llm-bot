@@ -24,7 +24,7 @@ export const getArticleById = async (id: string) => {
   try {
     const response = await axios.get(`/article/${id}`, config);
     console.log(response.data);
-    return response.data;
+    return response.data?.data;
   } catch (error) {
     console.error(error);
     throw error;
