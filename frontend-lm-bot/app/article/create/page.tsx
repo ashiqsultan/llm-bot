@@ -19,9 +19,9 @@ const CreateArticle = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="my-4 mx-4">
       <Card className="p-4">
-        <CardHeader>
+        <CardHeader className="my-1">
           <h2 className="text-xl font-semibold">Create Article</h2>
         </CardHeader>
         <CardContent>
@@ -31,14 +31,14 @@ const CreateArticle = () => {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="p-2"
             />
           </div>
-          <textarea
+          <Textarea
             placeholder="Content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full h-40 p-2 border border-gray-300 rounded"
+            className="h-40 p-2"
           />
         </CardContent>
         <CardFooter>
