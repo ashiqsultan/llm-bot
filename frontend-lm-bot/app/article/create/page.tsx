@@ -19,28 +19,35 @@ const CreateArticle = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <h2>Create Article</h2>
-      </CardHeader>
-      <CardContent>
-        <Input
-          className="my-2"
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <Textarea
-          placeholder="Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </CardContent>
-      <CardFooter>
-        <Button onClick={handleCreate}>Create</Button>
-      </CardFooter>
-    </Card>
+    <div className="w-full">
+      <Card className="p-4">
+        <CardHeader>
+          <h2 className="text-xl font-semibold">Create Article</h2>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-4">
+            <Input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <textarea
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="w-full h-40 p-2 border border-gray-300 rounded"
+          />
+        </CardContent>
+        <CardFooter>
+          <Button onClick={handleCreate} className="mt-4">
+            Create
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 };
 
