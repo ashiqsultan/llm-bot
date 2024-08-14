@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import IAppRes from '../types/IAppRes';
-import createArticleService from '../services/createArticle';
-import createChunks from '../services/createChunks';
-import { IArticle } from '../models/Article';
+import { Request, Response, NextFunction } from "express";
+import IAppRes from "../types/IAppRes";
+import createArticleService from "../services/createArticle";
+import createChunks from "../services/createChunks";
+import { IArticle } from "../models/Article";
 
 const createArticle = async (
   req: Request,
@@ -10,19 +10,24 @@ const createArticle = async (
   next: NextFunction
 ) => {
   try {
-    const { title, data } = req.body;
-    if (!title || !data || typeof data !== 'string') {
+    const { title, content } = req.body;
+    if (
+      !title ||
+      !content ||
+      typeof title !== "string" ||
+      typeof content !== "string"
+    ) {
       const response: IAppRes = {
-        data: '',
+        data: "",
         isError: true,
-        errMsg: 'Title or data cannot be empty',
+        errMsg: "Title or content cannot be empty",
       };
       res.status(400).send(response);
       return;
     }
     const newArticle: IArticle = {
-      title,
-      content: data,
+      title: title.trim(),
+      content: content.trim(),
     };
     const article = await createArticleService(newArticle);
     await createChunks(article);
