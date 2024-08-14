@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import DialogComponent from "@/components/ArticleView";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Pencil, Sparkles } from "lucide-react";
 
 const Home = () => {
   const { data, isLoading, isFetched } = useArticle();
@@ -30,9 +31,14 @@ const Home = () => {
           article={selectedArticle}
         />
       )}
-      <div className="py-4">
+      <div className="flex justify-start space-x-4 my-4">
         <Button>
+          <Pencil className="mr-2 h-4 w-4" />
           <Link href="/article/create">Create New Article</Link>
+        </Button>
+        <Button>
+          <Sparkles className="mr-2 h-4 w-4" />
+          <Link href="/search">AI Search</Link>
         </Button>
       </div>
       <div className="flex flex-wrap gap-4 ">
