@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -9,18 +9,36 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useCreateArticle } from "@/hooks/useArticle";
+import ArticleCreateSuccess from "@/components/ArticleCreateSuccess";
+import ArticleCreateError from "@/components/ArticleCreateError";
+import { useRouter } from "next/navigation";
 
 const CreateArticle = () => {
+  const router = useRouter();
+
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
+  const { mutate, isLoading, isError, isSuccess } = useCreateArticle();
 
   const handleCreate = () => {
     console.log({ title, content });
+    mutate({ title, content });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        router.push("/", { scroll: false });
+      }, 1000);
+    }
+  }, [isSuccess]);
 
   return (
     <div className="my-4 mx-4">
       <Card className="p-4">
+        {isError && <ArticleCreateError />}
+        {isSuccess && <ArticleCreateSuccess />}
         <CardHeader className="my-1">
           <h2 className="text-xl font-semibold">Create Article</h2>
         </CardHeader>
@@ -43,7 +61,7 @@ const CreateArticle = () => {
         </CardContent>
         <CardFooter>
           <Button onClick={handleCreate} className="mt-4">
-            Create
+            {isLoading ? "Creating..." : "Create Article"}
           </Button>
         </CardFooter>
       </Card>

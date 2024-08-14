@@ -38,7 +38,7 @@ const Home = () => {
       <div className="flex flex-wrap gap-4 ">
         {data.map((article: any) => (
           <Card
-            key={article.id}
+            key={article._id}
             className="w-full md:w-1/3 lg:w-1/4 cursor-pointer"
             onClick={() => handleCardClick(article)}
           >
