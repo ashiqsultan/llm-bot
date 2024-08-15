@@ -1,14 +1,14 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from 'axios';
 
 const config: AxiosRequestConfig = {
   maxBodyLength: Infinity,
   headers: {},
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 };
 
 export const getArticles = async () => {
   try {
-    const response = await axios.get("/article", config);
+    const response = await axios.get('/article', config);
     console.log(response.data);
     if (Array.isArray(response?.data?.data)) {
       return response.data.data;
@@ -33,7 +33,7 @@ export const getArticleById = async (id: string) => {
 
 export const createArticle = async (title: string, content: string) => {
   try {
-    const response = await axios.post("/article", { title, content }, config);
+    const response = await axios.post('/article', { title, content }, config);
     console.log(response.data);
     return response.data;
   } catch (error) {

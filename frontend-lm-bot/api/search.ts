@@ -5,7 +5,7 @@ const config: AxiosRequestConfig = {
   headers: {
     "Content-Type": "application/json",
   },
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 };
 
 export const aiSearch = async (msg: string) => {
