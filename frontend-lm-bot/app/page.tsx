@@ -83,8 +83,7 @@ const Result = () => {
                   <BookOpenText className='h-5 w-4' />
                   <p className=''>Source articles</p>
                 </div>
-
-                <div className='flex w-full space-x-1'>
+                <div className='flex w-full space-x-1 pt-1'>
                   {data.data.sources.map((item: any) => {
                     return (
                       <div key={item._id}>
