@@ -13,7 +13,7 @@ const Home = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const closeDialog = () => setIsDialogOpen(false);
 
-  const handleCardClick = (article) => {
+  const handleCardClick = (article: any) => {
     setSelectedArticle(article);
     setIsDialogOpen(true);
   };

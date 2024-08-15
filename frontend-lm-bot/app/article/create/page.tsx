@@ -20,7 +20,7 @@ const CreateArticle = () => {
 
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
-  const { mutate, isLoading, isError, isSuccess } = useCreateArticle();
+  const { mutate, isPending, isError, isSuccess } = useCreateArticle();
 
   const handleCreate = () => {
     console.log({ title, content });
@@ -63,7 +63,7 @@ const CreateArticle = () => {
         </CardContent>
         <CardFooter>
           <Button onClick={handleCreate} className='mt-4'>
-            {isLoading ? 'Creating...' : 'Create Article'}
+            {isPending ? 'Creating...' : 'Create Article'}
           </Button>
         </CardFooter>
       </Card>

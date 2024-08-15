@@ -1,16 +1,16 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getArticles, getArticleById, createArticle } from "../api/article";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { getArticles, getArticleById, createArticle } from '../api/article';
 
 export const useArticle = () => {
   return useQuery({
-    queryKey: ["articles"],
+    queryKey: ['articles'],
     queryFn: getArticles,
   });
 };
 
 export const useArticleById = (id: string) => {
   return useQuery({
-    queryKey: ["article", id],
+    queryKey: ['article', id],
     queryFn: () => getArticleById(id),
   });
 };
@@ -23,7 +23,7 @@ export const useCreateArticle = () => {
       createArticle(title, content),
     onSuccess: () => {
       // Invalidate and refetch articles query after a successful mutation
-      queryClient.invalidateQueries(["articles"]);
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
     },
   });
 };
