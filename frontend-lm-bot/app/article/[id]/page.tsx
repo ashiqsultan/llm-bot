@@ -1,6 +1,7 @@
-"use client";
-import { useArticleById } from "@/hooks/useArticle";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+'use client';
+import { useArticleById } from '@/hooks/useArticle';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import NavLinks from '@/components/NavLinks';
 
 const ArticleView = ({ params }: { params: { id: string } }) => {
   const id = params.id;
@@ -9,14 +10,17 @@ const ArticleView = ({ params }: { params: { id: string } }) => {
   if (error) return <p>Error loading article.</p>;
 
   return (
-    <Card className="max-w-xl mx-auto mt-8 p-4">
-      <CardHeader>
-        <CardTitle>{data?.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>{data?.content}</p>
-      </CardContent>
-    </Card>
+    <div>
+      <Card className=' mt-8 p-2'>
+        <CardHeader>
+          <NavLinks home all create />
+          <CardTitle>{data?.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data?.content}</p>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

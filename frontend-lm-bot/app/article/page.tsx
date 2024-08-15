@@ -3,9 +3,7 @@ import { useArticle } from '@/hooks/useArticle';
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import DialogComponent from '@/components/ArticleView';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Pencil, Sparkles } from 'lucide-react';
+import NavLinks from '@/components/NavLinks';
 
 const Home = () => {
   const { data, isLoading, isFetched } = useArticle();
@@ -31,20 +29,7 @@ const Home = () => {
           article={selectedArticle}
         />
       )}
-      <div className='flex justify-start space-x-4 my-4'>
-        <Link href='/article/create'>
-          <Button>
-            <Pencil className='mr-2 h-4 w-4' />
-            Create New Article
-          </Button>
-        </Link>
-        <Link href='/'>
-          <Button>
-            <Sparkles className='mr-2 h-4 w-4' />
-            AI Search
-          </Button>
-        </Link>
-      </div>
+      <NavLinks home create/>
       <div className='flex flex-wrap gap-4 '>
         {data.map((article: any) => (
           <Card
