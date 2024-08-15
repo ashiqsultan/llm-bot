@@ -20,6 +20,19 @@ const Result = () => {
   const { data, isError, isSuccess, isPending, mutate } = useSearch();
   const searchTextRef = useRef('');
 
+  const searchHandler = () => {
+    console.log({ searchTextRef: searchTextRef.current });
+    if (searchTextRef.current) {
+      mutate(searchTextRef.current.trim());
+    }
+  };
+
+  const handleKeyPress = (event: any) => {
+    if (event.key === 'Enter') {
+      searchHandler();
+    }
+  };
+
   return (
     <div
       className={`flex justify-center mt-5 ${!data && 'h-screen items-center'}`}
@@ -40,15 +53,9 @@ const Result = () => {
               onChange={(event) => {
                 searchTextRef.current = event.target.value;
               }}
+              onKeyDown={handleKeyPress}
             />
-            <Button
-              onClick={() => {
-                console.log({ searchTextRef: searchTextRef.current });
-                if (searchTextRef.current) {
-                  mutate(searchTextRef.current.trim());
-                }
-              }}
-            >
+            <Button onClick={searchHandler}>
               <ArrowRight className='h-4 w-4' />
             </Button>
           </div>
