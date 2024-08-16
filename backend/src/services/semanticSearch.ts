@@ -23,6 +23,7 @@ const semanticSearch = async (
           _id: 1,
           data: 1,
           articleId: 1,
+          articleTitle: 1,
           score: { $meta: "vectorSearchScore" },
         },
       },

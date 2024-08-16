@@ -5,6 +5,7 @@ export interface IChunk {
   data: string;
   embedding: Array<number>;
   articleId: string;
+  articleTitle: string;
 }
 
 export interface IChunkDocument extends IChunk, Document {

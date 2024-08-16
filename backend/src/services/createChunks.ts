@@ -14,10 +14,10 @@ export default async function createChunk(
       const collection = await ChunkCollection();
       const textToEmbed = `${article.title}, ${chunk}`;
       const embedding = await generateEmbedding(textToEmbed);
-      // Note: Title is only used in embedding to enable semantic search. Title is not inserted in the chunk collection.
       return collection.insertOne({
         data: chunk,
         embedding,
+        articleTitle: article.title,
         articleId: article._id?.toString() || '',
       });
     });
