@@ -23,5 +23,7 @@ package-lock.json
 
 # build artifacts
 dist
+deploy-package
+deploy-package.zip
 
 yarn.lock
