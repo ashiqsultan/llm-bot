@@ -12,7 +12,9 @@ export default async function createChunk(
     // Create promises
     const insertPromises = chunkedTextArr.map(async (chunk) => {
       const collection = await ChunkCollection();
-      const embedding = await generateEmbedding(chunk);
+      const textToEmbed = `${article.title}, ${chunk}`;
+      const embedding = await generateEmbedding(textToEmbed);
+      // Note: Title is only used in embedding to enable semantic search. Title is not inserted in the chunk collection.
       return collection.insertOne({
         data: chunk,
         embedding,
