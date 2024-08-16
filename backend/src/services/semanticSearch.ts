@@ -1,5 +1,5 @@
-import ChunkCollection, { IChunkDocument } from "../models/Chunk";
-import generateEmbedding from "../utils/openai/generateEmbedding";
+import ChunkCollection, { IChunkDocument } from '../models/Chunk';
+import generateEmbedding from '../utils/openai/generateEmbedding';
 
 const semanticSearch = async (
   searchText: string
@@ -11,11 +11,11 @@ const semanticSearch = async (
     const aggCursor = collection.aggregate<IChunkDocument>([
       {
         $vectorSearch: {
-          index: "chunk_vector_index",
-          path: "embedding",
+          index: 'chunk_vector_index',
+          path: 'embedding',
           queryVector: embedding,
-          numCandidates: 150,
-          limit: 5,
+          numCandidates: 500,
+          limit: 20,
         },
       },
       {
@@ -24,7 +24,7 @@ const semanticSearch = async (
           data: 1,
           articleId: 1,
           articleTitle: 1,
-          score: { $meta: "vectorSearchScore" },
+          score: { $meta: 'vectorSearchScore' },
         },
       },
     ]);
