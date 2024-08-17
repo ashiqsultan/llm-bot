@@ -45,7 +45,7 @@ const Result = () => {
       className={`flex justify-center mt-5 ${!data && 'h-screen items-center'}`}
     >
       <Card className={`w-full ${!data && 'max-w-lg p-4'}`}>
-        <CardHeader className='max-md:px-0'>
+        <CardHeader>
           <div className='flex items-center justify-between '>
             <div className='w-full flex items-center justify-center space-x-3 '>
               <CardTitle>AI Search</CardTitle>
@@ -71,13 +71,13 @@ const Result = () => {
             </Button>
           </div>
         </CardHeader>
-        <CardContent className='max-md:px-0'>
+        <CardContent>
           {isPending && <SkeletonCard />}
           {!isPending && !isError && data && data.data.reply && (
             <div>
               <div className='flex space-x-1 items-center py-1'>
                 <TextQuote className='h-5 w-4' />
-                <p className=''>Answer</p>
+                <p>Answer</p>
               </div>
               <Card className='bg-zinc-50 my-1 p-4'>
                 <div>{data.data.reply}</div>
@@ -108,7 +108,7 @@ const Result = () => {
             )}
         </CardContent>
         {data && <Separator className='mb-4' />}
-        <CardFooter className='flex justify-between pt-1 space-x-3 max-md:flex-col max-md:space-y-3 max-md:px-0'>
+        <CardFooter className='flex justify-between pt-1 space-x-3 max-md:flex-col max-md:space-y-3 '>
           <Link href='/article' className='w-full'>
             <Button variant='outline' className='w-full'>
               <LibraryBig className='mr-2 h-4 w-4' />
