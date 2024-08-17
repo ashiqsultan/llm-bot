@@ -42,9 +42,15 @@ const Result = () => {
 
   return (
     <div
-      className={`flex justify-center mt-5 ${!data && 'h-screen items-center'}`}
+      className={`flex justify-center mt-5 h-screen ${
+        data || isPending ? 'items-start' : 'items-center'
+      }`}
     >
-      <Card className={`w-full ${!data && 'max-w-lg p-4'}`}>
+      <Card
+        className={`w-full p-4 ${
+          data || isPending ? 'max-w-full' : 'max-w-lg'
+        }`}
+      >
         <CardHeader>
           <div className='flex items-center justify-between '>
             <div className='w-full flex items-center justify-center space-x-3 '>
