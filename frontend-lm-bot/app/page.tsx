@@ -9,12 +9,19 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, ArrowRight, TextQuote, BookOpenText } from 'lucide-react';
+import {
+  Sparkles,
+  ArrowRight,
+  TextQuote,
+  BookOpenText,
+  Loader2,
+} from 'lucide-react';
 import { useSearch } from '@/hooks/useSearch';
 import ArticleSourceBadge from '@/components/ArticleSourceBadge';
 import { LibraryBig, Pencil } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import SkeletonCard from '@/components/SkeletonCard';
 
 const Result = () => {
   const { data, isError, isSuccess, isPending, mutate } = useSearch();
@@ -56,11 +63,16 @@ const Result = () => {
               onKeyDown={handleKeyPress}
             />
             <Button onClick={searchHandler}>
-              <ArrowRight className='h-4 w-4' />
+              {isPending ? (
+                <Loader2 className='h-5 w-5 animate-spin' />
+              ) : (
+                <ArrowRight className='h-5 w-5' />
+              )}
             </Button>
           </div>
         </CardHeader>
         <CardContent className='max-md:px-0'>
+          {isPending && <SkeletonCard />}
           {!isPending && !isError && data && data.data.reply && (
             <div>
               <div className='flex space-x-1 items-center py-1'>
