@@ -15,6 +15,7 @@ import {
   TextQuote,
   BookOpenText,
   Loader2,
+  CircleHelp,
 } from 'lucide-react';
 import { useSearch } from '@/hooks/useSearch';
 import ArticleSourceBadge from '@/components/ArticleSourceBadge';
@@ -22,6 +23,11 @@ import { LibraryBig, Pencil } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import SkeletonCard from '@/components/SkeletonCard';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 
 const Result = () => {
   const { data, isError, isSuccess, isPending, mutate } = useSearch();
@@ -112,6 +118,29 @@ const Result = () => {
                 </div>
               </div>
             )}
+
+          <Collapsible className='mt-4'>
+            <CollapsibleTrigger className='hover:underline  hover:text-slate-700 text-blue-950 flex items-center text-sm '>
+              <CircleHelp className='mr-2 h-4 w-4' /> How it works
+            </CollapsibleTrigger>
+            <CollapsibleContent className='mt-2'>
+              <blockquote className=' border-l-4 border-gray-600 bg-gray-100 p-4 text-gray-800 text-sm'>
+                <ul className='pl-4 list-outside space-y-2'>
+                  <li>
+                    📝 Create new articles with a title and content—any text
+                    data you want to store.
+                  </li>
+                  <li>
+                    ❓ Ask questions based on the articles you've created.
+                  </li>
+                  <li>
+                    ✨ Voilà! The AI will provide a seamless search and
+                    retrieval experience using your content!
+                  </li>
+                </ul>
+              </blockquote>
+            </CollapsibleContent>
+          </Collapsible>
         </CardContent>
         {data && <Separator className='mb-4' />}
         <CardFooter className='flex justify-between pt-1 space-x-3 max-md:flex-col max-md:space-y-3 '>
