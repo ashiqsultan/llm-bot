@@ -10,10 +10,10 @@ const ArticleView = ({ params }: { params: { id: string } }) => {
   if (error) return <p>Error loading article.</p>;
 
   return (
-    <div>
+    <div className='container'>
+      <NavLinks home all create />
       <Card className=' mt-8 p-2'>
         <CardHeader>
-          <NavLinks home all create />
           <CardTitle>{data?.title}</CardTitle>
         </CardHeader>
         <CardContent>
