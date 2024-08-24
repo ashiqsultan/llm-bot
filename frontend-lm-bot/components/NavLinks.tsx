@@ -15,7 +15,7 @@ const NavLinks = ({ home = false, create = false, all = false }) => {
       )}
 
       {all && (
-        <Link href='/'>
+        <Link href='/article'>
           <Button>
             <LibraryBig className='mr-2 h-4 w-4' />
             All Articles

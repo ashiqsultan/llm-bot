@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import DialogComponent from '@/components/ArticleView';
 import NavLinks from '@/components/NavLinks';
+import { Article, columns } from './columns';
+import { DataTable } from './data-table';
 
 const Home = () => {
   const { data, isLoading, isFetched } = useArticle();
@@ -29,21 +31,22 @@ const Home = () => {
           article={selectedArticle}
         />
       )}
-      <NavLinks home create/>
-      <div className='flex flex-wrap gap-4 '>
-        {data.map((article: any) => (
-          <Card
-            key={article._id}
-            className='w-full md:w-1/3 lg:w-1/4 cursor-pointer'
-            onClick={() => handleCardClick(article)}
-          >
-            <CardHeader className='font-semibold'>{article.title}</CardHeader>
-            <CardContent className='text-sm'>
-              {article.content.substring(0, 100)}...
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <NavLinks home create />
+      <h1 className='text-3xl font-bold my-4'>Articles</h1>
+      {Array.isArray(data) && data.length > 0 ? (
+        <DataTable
+          columns={columns}
+          data={data.map((article: Article) => {
+            return {
+              ...article,
+              title: article.title.substring(0, 50),
+              content: article.content.substring(0, 100),
+            };
+          })}
+        />
+      ) : (
+        <p>No articles found.</p>
+      )}
     </div>
   );
 };
