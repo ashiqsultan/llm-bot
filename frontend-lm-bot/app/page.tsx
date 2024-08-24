@@ -120,7 +120,7 @@ const Result = () => {
             )}
 
           <Collapsible className='mt-4'>
-            <CollapsibleTrigger className='hover:underline  hover:text-slate-700 text-blue-950 flex items-center text-sm '>
+            <CollapsibleTrigger className='hover:underline  hover:text-slate-700 text-blue-950 flex items-center font-bold text-sm'>
               <CircleHelp className='mr-2 h-4 w-4' /> How it works
             </CollapsibleTrigger>
             <CollapsibleContent className='mt-2'>
@@ -131,11 +131,11 @@ const Result = () => {
                     data you want to store.
                   </li>
                   <li>
-                    ❓ Ask questions based on the articles you've created.
+                    ❓ Ask questions based on the articles created.
                   </li>
                   <li>
                     ✨ Voilà! The AI will provide a seamless search and
-                    retrieval experience using your content!
+                    retrieval experience using your content.
                   </li>
                 </ul>
               </blockquote>
