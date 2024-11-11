@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import generateEmbedding from "../utils/openai/generateEmbedding";
+import generateEmbedding from "../utils/gemini/generateEmbedding";
 
 const tempembeddingtest = async (
   req: Request,

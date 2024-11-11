@@ -1,5 +1,5 @@
 import ChunkCollection, { IChunkDocument } from '../models/Chunk';
-import generateEmbedding from '../utils/openai/generateEmbedding';
+import generateEmbedding from '../utils/gemini/generateEmbedding';
 
 const semanticSearch = async (
   searchText: string

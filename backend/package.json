@@ -13,6 +13,7 @@
     "seed": "ts-node src/seed/main.ts"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@langchain/textsplitters": "^0.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

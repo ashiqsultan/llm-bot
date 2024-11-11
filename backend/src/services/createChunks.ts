@@ -1,6 +1,6 @@
 import textSplitter from '../utils/openai/textSplitter';
 import ChunkCollection from '../models/Chunk';
-import generateEmbedding from '../utils/openai/generateEmbedding';
+import generateEmbedding from '../utils/gemini/generateEmbedding';
 import { IArticleDocument } from '../models/Article';
 
 export default async function createChunk(

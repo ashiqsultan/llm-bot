@@ -1,5 +1,5 @@
 import semanticSearch from './semanticSearch';
-import llm from '../utils/openai/llm';
+import llm from '../utils/gemini/llm';
 import { IChunkDocument } from '../models/Chunk';
 
 const chatService = async (
